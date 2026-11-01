@@ -1,3 +1,7 @@
+## Crimson Desert compatibility fork
+
+This fork includes a narrowly scoped Denuvo detection fix for Crimson Desert executable version 1.0.0.3462 and compatibility TOMLs for Steam build 1792618285. See [the fix and build notes](README_CRIMSON_DESERT_FIX.md). Download ready-to-use files from [Releases](https://github.com/Wirtz-7/OpenSteamTool/releases).
+
 <div align="center">
   <img src="docs/logo-animated.svg" width="180" alt="OpenSteamTool logo">
 

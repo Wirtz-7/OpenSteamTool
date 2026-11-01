@@ -21,3 +21,12 @@ build/
 
 # DLLs (keep only source files)
 !.deps/**/*.dll
+# Personal authorization data must remain local.
+*.lua
+**/tickets.txt
+**/appticket.bin
+**/eticket.bin
+backup/
+userdata/
+private/
+*.log

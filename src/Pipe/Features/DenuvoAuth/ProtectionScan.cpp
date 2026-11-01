@@ -1,6 +1,7 @@
 #include "Pipe/Features/DenuvoAuth/ProtectionScan.h"
 
 #include "OSTPlatform/include/ByteSearch.h"
+#include "OSTPlatform/include/Hash.h"
 #include "OSTPlatform/include/PE.h"
 #include "OSTPlatform/include/Process.h"
 #include "Utils/Logging/Log.h"
@@ -230,6 +231,18 @@ namespace {
     std::optional<DetectionMatch> DetectModule(
         const ModuleCandidate& module,
         const OSTPlatform::PE::Image& image) {
+        // This exact Crimson Desert build has neither of the older scanner's
+        // signatures. Recognize only the independently identified executable;
+        // filename, size, or section layout alone must not enable authorization.
+        if (module.executable && Lower(BaseNameFromPath(module.path)) == "crimsondesert.exe" &&
+            OSTPlatform::Hash::Sha256OfFile(module.nativePath) ==
+                "2c98b00e8922f14ac1937b5ac996956c7b9ca2d0fbcb0049dc0436321a09dd77") {
+            DetectionMatch match{};
+            match.method = DetectionMethod::KnownBuildHash;
+            match.entryPointRva = image.EntryPointRva();
+            return match;
+        }
+
         // Prefer the OEP signature path; legacy section/string scan is broader.
         if (const auto match = TryOepPattern(module, image)) {
             return match;
@@ -353,6 +366,7 @@ const char* ToString(DetectionMethod method) {
     case DetectionMethod::None: return "None";
     case DetectionMethod::LegacySectionString: return "LegacySectionString";
     case DetectionMethod::OepPattern: return "OepPattern";
+    case DetectionMethod::KnownBuildHash: return "KnownBuildHash";
     }
     return "Unknown";
 }

@@ -1,0 +1,20 @@
+{
+  "base_commit": "29c4fbb04d63c34d14ebf5b1edd30aab120af5ea",
+  "embedded_version": "1.4.8-netfix2-cd3462-20261101",
+  "configuration": "Release",
+  "CMAKE_CXX_FLAGS_RELEASE": "/O2 /Ob2 /DNDEBUG /utf-8",
+  "game_sha256": "2c98b00e8922f14ac1937b5ac996956c7b9ca2d0fbcb0049dc0436321a09dd77",
+  "original_dll_sha256": "aa96bdd6f232105969a8ed3987efd9fd88d1436e8c602093bbade66b3846f991",
+  "patched_dll_sha256": "b0fe5e506b8416388010b69989df900713d0db797ea39519c9e5639ddfe06473",
+  "changed_source_files": [
+    "src/Pipe/Features/DenuvoAuth/ProtectionScan.cpp",
+    "src/Pipe/Features/DenuvoAuth/ProtectionScan.h"
+  ],
+  "scanner_test_passed": true,
+  "dependencies": {
+    "spdlog": "79524ddd08a4ec981b7fea76afd08ee05f83755d",
+    "protobuf": "983d115bd9f388468fd65d1e623b858eb12bc528",
+    "tomlplusplus": "30172438cee64926dc41fdd9c11fb3ba5b2ba9de",
+    "detours": "1dbd4ea281d73d478aa8d09a8b83fbd265f715f7"
+  }
+}
